@@ -1,4 +1,5 @@
 <script>
+  import { Button } from 'sveltestrap/src';
   export let weather;
 </script>
 
@@ -22,7 +23,9 @@
 </style>
 
 <div class="weather-card">
-  <h6>{weather.applicable_date}</h6>
+  <Button size="sm" outline="secondary" class="mb-4">
+    {weather.applicable_date}
+  </Button>
 
   <div class="mb-3">
     <img
