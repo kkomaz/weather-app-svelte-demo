@@ -7,7 +7,7 @@
 </script>
 
 <script>
-	import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardText } from "sveltestrap";
+	import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardText } from "sveltestrap/src";
 	import { goto } from '@sapper/app';
 
 	async function navToLocation(selected) {
