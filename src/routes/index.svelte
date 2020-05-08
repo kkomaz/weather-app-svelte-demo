@@ -8,11 +8,11 @@
 
 <script>
 	import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardText } from "sveltestrap/src";
-	import { goto } from '@sapper/app';
+	// import { goto } from '@sapper/app';
 
-	async function navToLocation(selected) {
-		await goto(`/locations/${selected.woeid}`);
-	}
+	// async function navToLocation(selected) {
+	// 	await goto(`/locations/${selected.woeid}`);
+	// }
 	
 	export let locations;
 </script>
@@ -22,8 +22,8 @@
 </svelte:head>
 
 <style>
-	:global(.card) {
-		cursor: pointer;
+	a {
+		text-decoration: none;
 	}
 </style>
 
@@ -33,10 +33,12 @@
 	<div class="row">
 		{#each locations as location}
 			<div class="col-4 mb-2">
-				<Card on:click={() => navToLocation(location)}>
+				<Card>
 					<CardHeader>
 						<CardTitle>
-							{location.title}
+							<a rel='prefetch' href={`/locations/${location.woeid}`}>
+								{location.title}
+							</a>
 						</CardTitle>
 					</CardHeader>
 					<CardBody>
