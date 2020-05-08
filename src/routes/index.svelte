@@ -1,12 +1,54 @@
+<script context="module">
+	export function preload({ params, query }) {
+		return this.fetch('./index.json').then(r => r.json()).then(locations => {
+			return { locations };
+		})
+	}
+</script>
+
+<script>
+	import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardText } from "sveltestrap";
+	import { goto } from '@sapper/app';
+
+	async function navToLocation(selected) {
+		await goto(`/locations/${selected.woeid}`);
+	}
+	
+	export let locations;
+</script>
+
 <svelte:head>
 	<title>Sapper project template</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+<style>
+	:global(.card) {
+		cursor: pointer;
+	}
+</style>
 
-<figure>
-	<img alt='Success Kid' src='successkid.jpg'>
-	<figcaption>Have fun with Sapper!</figcaption>
-</figure>
+<div>
+	<h1>Welcome to the Weather App</h1>
 
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+	<div class="row">
+		{#each locations as location}
+			<div class="col-4 mb-2">
+				<Card on:click={() => navToLocation(location)}>
+					<CardHeader>
+						<CardTitle>
+							{location.title}
+						</CardTitle>
+					</CardHeader>
+					<CardBody>
+						<CardSubtitle>
+							woeid - {location.woeid}
+						</CardSubtitle>
+						<CardText>
+							Location Type - {location.location_type}
+						</CardText>
+					</CardBody>
+				</Card>
+			</div>
+		{/each}
+	</div>
+</div>
