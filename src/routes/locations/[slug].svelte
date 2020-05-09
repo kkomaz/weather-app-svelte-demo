@@ -8,12 +8,20 @@
 </script>
 
 <script>
+  import { onMount } from 'svelte';
+  import { selectedWeather } from './_stores';
   import WeatherCard from '../../components/Location/WeatherCard.svelte';
   export let location;
+
+  selectedWeather.update(() => {
+    return location.consolidated_weather[0];
+  });
 </script>
 
 <div>
   <h1>{location.title}</h1>
+
+  {console.log($selectedWeather)};
 
   <div class="row mt-2">
     {#each location.consolidated_weather as weather}

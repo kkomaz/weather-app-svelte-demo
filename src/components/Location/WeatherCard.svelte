@@ -1,5 +1,10 @@
 <script>
   import { Button } from 'sveltestrap/src';
+  import { selectedWeather } from '../../routes/locations/_stores.js';
+
+  function onDateClick(weather) {
+    selectedWeather.set(weather)
+  }
   export let weather;
 </script>
 
@@ -23,7 +28,7 @@
 </style>
 
 <div class="weather-card">
-  <Button size="sm" outline="secondary" class="mb-4">
+  <Button size="sm" outline="secondary" class="mb-4" on:click={() => onDateClick(weather)}>
     {weather.applicable_date}
   </Button>
 
