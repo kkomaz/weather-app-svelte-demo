@@ -11,6 +11,8 @@
   import { onMount } from 'svelte';
   import { selectedWeather } from './_stores';
   import WeatherCard from '../../components/Location/WeatherCard.svelte';
+  import WeatherDetail from '../../components/Location/WeatherDetail.svelte';
+
   export let location;
 
   selectedWeather.update(() => {
@@ -21,13 +23,14 @@
 <div>
   <h1>{location.title}</h1>
 
-  {console.log($selectedWeather)};
-
   <div class="row mt-2">
     {#each location.consolidated_weather as weather}
       <div class="col-2">
         <WeatherCard weather={weather} /> 
       </div>
     {/each}
+  </div>
+  <div class="col-12 mt-2">
+    <WeatherDetail />
   </div>
 </div>
