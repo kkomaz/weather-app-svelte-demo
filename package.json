@@ -1,6 +1,6 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "weather-app",
+  "description": "weather-app",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",
